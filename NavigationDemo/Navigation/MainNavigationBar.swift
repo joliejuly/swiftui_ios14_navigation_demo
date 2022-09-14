@@ -16,6 +16,8 @@ struct MainNavigationBar: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            Spacer()
+                .frame(height: 50)
             navigationTitlesView
         }
     }
@@ -31,7 +33,6 @@ struct MainNavigationBar: View {
             }
             Spacer()
         }
-        .lineLimit(1)
     }
     
     @ViewBuilder
@@ -40,18 +41,17 @@ struct MainNavigationBar: View {
             guard !isLast else { return }
             storage.popTo(id: item.id)
         } label: {
-            Group {
-                if index != 0 {
-                    Constants.arrowImage
-                }
-                if let title = item.title {
-                    Text(title)
-                        .font(.system(size: 13, weight: .regular, design: .rounded))
-                }
+            if index != 0 {
+                Constants.arrowImage
             }
-            .frame(height: 30)
-            .foregroundColor(isLast ? .black : .gray)
+            if let title = item.title {
+                Text(title)
+                    .font(.system(size: 20, weight: isLast ? .heavy : .medium, design: .rounded))
+                    .lineLimit(1)
+            }
         }
+        .frame(height: 30)
+        .foregroundColor(.white)
     }
 }
 

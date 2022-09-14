@@ -10,14 +10,17 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         MainNavigationView {
-            Button {
-                isFirstViewShown = true
-            } label: {
-                Group {
-                    Image(systemName: "globe")
-                        .imageScale(.large)
-                        .foregroundColor(.accentColor)
-                    Text("Tap me!")
+            ZStack {
+                Image("home")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .opacity(0.7)
+                Button {
+                    isFirstViewShown = true
+                } label: {
+                    Text("Go!")
+                        .font(.system(size: 50, weight: .heavy, design: .rounded))
+                        .foregroundColor(.white)
                 }
             }
             .navigationLink(title: "FirstView", destination: FirstView(), isActive: $isFirstViewShown)

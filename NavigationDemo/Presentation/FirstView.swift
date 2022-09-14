@@ -8,25 +8,28 @@
 import SwiftUI
 
 struct FirstView: View {
-    
     var body: some View {
-        VStack {
-            MainNavigationBar()
-            Spacer()
-            Button {
-                isSecondViewShown = true
-            } label: {
-                Group {
-                    Image(systemName: "apple")
-                        .imageScale(.large)
-                        .foregroundColor(.accentColor)
+        ZStack {
+            Color.black
+            Image("first")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+            VStack {
+                MainNavigationBar()
+                Spacer()
+                Button {
+                    isSecondViewShown = true
+                } label: {
                     Text("Tap me!")
+                        .font(.system(size: 30, weight: .heavy, design: .rounded))
+                        .foregroundColor(.white)
                 }
+                .navigationLink(title: "SecondView", destination: SecondView(), isActive: $isSecondViewShown)
+                Spacer()
             }
-            .navigationLink(title: "SecondView", destination: SecondView(), isActive: $isSecondViewShown)
-            Spacer()
+            .padding()
         }
-        .padding()
+        .ignoresSafeArea(.container, edges: .vertical)
         .navigationBarHidden(true)
     }
     

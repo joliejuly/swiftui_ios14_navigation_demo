@@ -7,9 +7,12 @@ struct MainNavigationView<Content: View>: View {
 
     var body: some View {
         NavigationView {
-            content
-                .navigationBarHidden(true)
-                .ignoresSafeArea(.container, edges: .vertical)
+            ZStack {
+                Color.black
+                content
+            }
+            .navigationBarHidden(true)
+            .ignoresSafeArea(.container, edges: .vertical)
         }
         .navigationViewStyle(.stack)
     }
