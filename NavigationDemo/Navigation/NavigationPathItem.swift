@@ -10,16 +10,16 @@ import SwiftUI
 /// Информация об экранах навигации
 final class NavigationPathItem: Identifiable, CustomDebugStringConvertible {
     /// Флаг привязки, что данный экран открыт
-    var isActive: Binding<Bool>
+    var isPresented: Binding<Bool>
     /// Идентификатор
     let id: String
     /// Название экрана
     let title: String?
 
-    var debugDescription: String { "navitem: \(id) isActive: \(isActive.wrappedValue)" }
+    var debugDescription: String { "navitem: \(id) isPresented: \(isPresented.wrappedValue)" }
 
-    init(isActive: Binding<Bool>, id: String, title: String) {
-        self.isActive = isActive
+    init(isPresented: Binding<Bool>, id: String, title: String) {
+        self.isPresented = isPresented
         self.id = id
         self.title = title
     }
