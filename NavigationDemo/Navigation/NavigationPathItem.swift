@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Информация об экранах навигации
-final class NavigationPathItem: Identifiable, CustomDebugStringConvertible {
+final class NavigationPathItem: Identifiable, CustomDebugStringConvertible, Hashable {
     /// Флаг привязки, что данный экран открыт
     var isPresented: Binding<Bool>
     /// Идентификатор
@@ -22,5 +22,13 @@ final class NavigationPathItem: Identifiable, CustomDebugStringConvertible {
         self.isPresented = isPresented
         self.id = id
         self.title = title
+    }
+    
+    static func == (lhs: NavigationPathItem, rhs: NavigationPathItem) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

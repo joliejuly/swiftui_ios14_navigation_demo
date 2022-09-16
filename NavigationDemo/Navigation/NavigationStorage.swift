@@ -7,16 +7,21 @@
 
 import SwiftUI
 
+extension View {
+    static var id: String {
+        String(describing: self)
+    }
+}
+
 /// Хранилище стека навигации
+@available(iOS 16.0, *)
 final class NavigationStorage: ObservableObject {
     static let shared = NavigationStorage()
 
     /// Хранилище активных navigation links
     @Published var pathItems: [NavigationPathItem] = []
-    /// Хранение стека навигации
-    @Published var path = NavigationPath()
     
-
+    
     /// Добавление нового пути навигации
     /// - Parameters:
     ///   - isPresented: Флаг привязки, что данный экран открыт
@@ -35,8 +40,9 @@ final class NavigationStorage: ObservableObject {
     ///   - id: Идентификатор экрана
     func popTo(id: String) {
         guard let index = pathItems.firstIndex(where: { $0.id == id }) else { return }
-        // Отключаем линк перед выбранным экраном
-        pathItems[index + 1].isPresented.wrappedValue = false
+        for (idx, item) in pathItems.enumerated() where idx > index {
+            item.isPresented.wrappedValue = false
+        }
         pathItems = Array(pathItems[0 ... index])
     }
     
