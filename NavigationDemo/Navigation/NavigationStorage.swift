@@ -14,7 +14,6 @@ extension View {
 }
 
 /// Хранилище стека навигации
-@available(iOS 16.0, *)
 final class NavigationStorage: ObservableObject {
     static let shared = NavigationStorage()
 

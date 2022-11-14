@@ -20,7 +20,7 @@ struct NavigationModifier<Destination: View>: ViewModifier {
         guard let destination = destination, isActive.wrappedValue == true else { return }
         let identifier = id ?? destination.navigationID
 
-        NavigationStorage.shared.addItem(isActive: isActive, id: identifier, title: title)
+        NavigationStorage.shared.addItem(isPresented: isActive, id: identifier, title: title)
     }
 
     func body(content: Content) -> some View {
