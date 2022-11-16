@@ -19,7 +19,7 @@ struct ContentView: View {
                     isFirstViewShown = true
                 } label: {
                     Text("Go!")
-                        .font(.system(size: 50, weight: .heavy, design: .rounded))
+                        .font(.system(size: 50, weight: .heavy, design:  .rounded))
                         .foregroundColor(.white)
                 }
             }

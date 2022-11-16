@@ -39,9 +39,7 @@ final class NavigationStorage: ObservableObject {
     ///   - id: Идентификатор экрана
     func popTo(id: String) {
         guard let index = pathItems.firstIndex(where: { $0.id == id }) else { return }
-        for (idx, item) in pathItems.enumerated() where idx > index {
-            item.isPresented.wrappedValue = false
-        }
+        pathItems[index + 1].isPresented.wrappedValue = false
         pathItems = Array(pathItems[0 ... index])
     }
     
